@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="description" content="Weather Applicaton">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Shadan Shamshad">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Weather Application | Shadan</title>
+        <link rel="stylesheet" href="./style.css"
+        
+    </head>
+    <body>
+        <div class="container">
+            <div class="weather-container">
+
+                <div id="image">Image</div>
+                <div id="temperature">Temperature</div>
+                <div id="loc">Location</div>
+                <div id="summary">Summary</div>
+            </div>
+        </div>
+        <script>
+                    let latitude;
+                    let longitude;
+                    let APIkey = '95bad25de29f19de80c9467aed3f6d60';
+                    let image = document.getElementById('image');
+                    let temperature = document.getElementById('temperature');
+                    let loc = document.getElementById('loc');
+                    let summary = document.getElementById('summary');
+
+                    navigator.geolocation.getCurrentPosition((position)=>{
+                    latitude= position.coords.latitude;
+                    longitude=position.coords.longitude;
+
+                    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIkey}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        temperature.innerHTML = Math.floor(data.main.temp - 273.2)+ '°C';
+                        loc.innerHTML= data.name +' , ' + data.sys.country;
+                        summary.innerHTML= data.weather[0].description;
+
+                        let imgURL = "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
+                        image.innerHTML = `<img src = ${imgURL} />`;
+                    });
+                })
+                
+        </script>
+    </body>
+</html>

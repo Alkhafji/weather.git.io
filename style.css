@@ -1,0 +1,26 @@
+
+            body{
+                margin: 0;
+                text-align: center;
+                font-weight: medium;
+                font-size: 2rem;
+                font-family: fantasy;
+                line-height: 1.5;
+                color: #ffffff;
+                background-color: #7fb0e4;
+            }
+            .container{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .weather-container{
+                height: 250px;
+                width: 250px;
+                border-radius: 102px;
+                background: linear-gradient(45deg, #5c95d3, #6db2fa);
+                box-shadow:  31px -31px 62px #3d648c,-31px 31px 62px #8fe8ff;
+            }
+    
